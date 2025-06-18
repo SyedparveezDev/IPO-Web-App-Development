@@ -83,13 +83,14 @@ WSGI_APPLICATION = 'ipo_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ipo_db',              # You should create this in pgAdmin
-        'USER': 'postgres',            # your PostgreSQL username
-        'PASSWORD': 'admin123',        # your password
+        'NAME': 'ipo_db',
+        'USER': 'postgres',
+        'PASSWORD': 'admin123',   # Exactly what you set
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
 
 
 
