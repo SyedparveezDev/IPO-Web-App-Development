@@ -3,6 +3,8 @@ from django.urls import path
 from django.http import HttpResponse
 from django.conf import settings
 from django.conf.urls.static import static
+from ipo_app.views import IPOListAPIView
+
 
 def homepage(request):
     return HttpResponse("<h1>Welcome to the IPO Web App 🚀</h1>")
@@ -10,6 +12,7 @@ def homepage(request):
 urlpatterns = [
     path('', homepage),  # 👈 Now / will show a page
     path('admin/', admin.site.urls),
+    path('api/ipos/', IPOListAPIView.as_view()),  # 👈 API endpoint
 ]
 
 if settings.DEBUG:
