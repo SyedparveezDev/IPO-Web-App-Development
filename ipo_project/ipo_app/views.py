@@ -9,3 +9,7 @@ class IPOListAPIView(APIView):
         ipos = IPO.objects.all()
         serializer = IPOSerializer(ipos, many=True)
         return Response(serializer.data)
+
+class IPODetailAPIView(RetrieveAPIView):
+    queryset = IPO.objects.all()
+    serializer_class = IPOSerializer    
