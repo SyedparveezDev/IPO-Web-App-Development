@@ -3,7 +3,7 @@ from django.urls import path
 from django.http import HttpResponse
 from django.conf import settings
 from django.conf.urls.static import static
-from ipo_app.views import IPOListAPIView
+from ipo_app.views import IPOListAPIView, IPODetailAPIView
 
 
 def homepage(request):
