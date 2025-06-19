@@ -15,7 +15,7 @@ urlpatterns = [
     path('api/ipos/', IPOListAPIView.as_view()),  # 👈 API endpoint
     path('api/ipos/<int:pk>/', IPODetailAPIView.as_view()),  # 👈 New route
 ]
-]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
