@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.generics import RetrieveAPIView
 from .models import IPO
 from .serializers import IPOSerializer
+from rest_framework.generics import RetrieveAPIView
 
 class IPOListAPIView(APIView):
     def get(self, request):
@@ -12,4 +12,4 @@ class IPOListAPIView(APIView):
 
 class IPODetailAPIView(RetrieveAPIView):
     queryset = IPO.objects.all()
-    serializer_class = IPOSerializer    
+    serializer_class = IPOSerializer

@@ -13,6 +13,8 @@ urlpatterns = [
     path('', homepage),  # 👈 Now / will show a page
     path('admin/', admin.site.urls),
     path('api/ipos/', IPOListAPIView.as_view()),  # 👈 API endpoint
+    path('api/ipos/<int:pk>/', IPODetailAPIView.as_view()),  # 👈 New route
+]
 ]
 
 if settings.DEBUG:
