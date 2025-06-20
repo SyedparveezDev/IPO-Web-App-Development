@@ -149,3 +149,5 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
     ]
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
