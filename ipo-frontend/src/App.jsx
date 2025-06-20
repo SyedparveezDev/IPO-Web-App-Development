@@ -14,6 +14,7 @@ function App() {
   return (
     <div style={{ padding: "20px" }}>
       <h1>IPO List</h1>
+      <Link to="/login">Admin Login</Link>
       {ipos.length === 0 ? (
         <p>No IPOs available.</p>
       ) : (
