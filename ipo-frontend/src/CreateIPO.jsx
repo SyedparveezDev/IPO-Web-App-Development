@@ -26,7 +26,7 @@ function CreateIPO() {
         Authorization: `Bearer ${token}`
       }
     })
-    .then((res) => {
+    .then(() => {
       alert("IPO created successfully!");
       navigate("/");
     })
