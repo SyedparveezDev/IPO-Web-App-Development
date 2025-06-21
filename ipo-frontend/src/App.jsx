@@ -15,19 +15,18 @@ function App() {
     <div style={{ padding: "20px" }}>
       <h1>IPO List</h1>
       <Link to="/login">Admin Login</Link>
-      {ipos.length === 0 ? (
-        <p>No IPOs available.</p>
-      ) : (
-        <ul>
-          {ipos.map(ipo => (
-            <li key={ipo.id}>
-              <Link to={`/ipo/${ipo.id}`}>
-                {ipo.company_name} ({ipo.status})
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+{localStorage.getItem("access") ? (
+  <p><Link to="/create">➕ Create IPO</Link></p>
+) : null}
+<ul>
+  {ipos.map(ipo => (
+    <li key={ipo.id}>
+      <Link to={`/ipo/${ipo.id}`}>
+        {ipo.company_name} ({ipo.status})
+      </Link>
+    </li>
+  ))}
+</ul>
     </div>
   );
 }
