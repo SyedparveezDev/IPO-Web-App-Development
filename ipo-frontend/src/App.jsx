@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div style={{ padding: "20px" }}>
-      
+      <h1 className="text-3xl font-bold text-blue-600">IPO Listings</h1>
       <Link to="/login">Admin Login</Link>
 {localStorage.getItem("access") ? (
   <p><Link to="/create">➕ Create IPO</Link></p>
