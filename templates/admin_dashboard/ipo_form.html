@@ -1,0 +1,574 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block title %}{{ title }} - Bluestock Admin{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-section {
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 24px;
+    }
+    
+    .section-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid #e2e8f0;
+        background: #f8fafc;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .section-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0;
+    }
+    
+    .section-subtitle {
+        font-size: 14px;
+        color: #64748b;
+        margin: 4px 0 0 0;
+    }
+    
+    .section-body {
+        padding: 24px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-label-custom {
+        font-size: 14px;
+        font-weight: 500;
+        color: #374151;
+        margin-bottom: 8px;
+        display: block;
+    }
+    
+    .form-control-custom {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #374151;
+        background: white;
+        transition: all 0.2s ease;
+    }
+    
+    .form-control-custom:focus {
+        outline: none;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .form-control-custom::placeholder {
+        color: #9ca3af;
+    }
+    
+    .logo-upload-section {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+    }
+    
+    .logo-preview {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: #f97316;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 14px;
+        text-align: center;
+        line-height: 1.2;
+    }
+    
+    .logo-preview img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    
+    .logo-actions {
+        display: flex;
+        gap: 12px;
+    }
+    
+    .btn-upload {
+        background: #6366f1;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-upload:hover {
+        background: #4f46e5;
+    }
+    
+    .btn-delete {
+        background: transparent;
+        color: #6b7280;
+        border: 1px solid #d1d5db;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-delete:hover {
+        background: #f3f4f6;
+        color: #374151;
+    }
+    
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .form-row-single {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-bottom: 20px;
+    }
+    
+    .section-divider {
+        margin: 32px 0;
+        padding: 16px 0;
+        border-top: 1px solid #e2e8f0;
+    }
+    
+    .section-divider-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1e293b;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin: 0 0 20px 0;
+    }
+    
+    .file-upload-area {
+        border: 2px dashed #d1d5db;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        background: #f9fafb;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    
+    .file-upload-area:hover {
+        border-color: #6366f1;
+        background: #f8fafc;
+    }
+    
+    .file-upload-text {
+        color: #6b7280;
+        font-size: 14px;
+        margin: 0;
+    }
+    
+    .page-header-custom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 32px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .page-title-section h1 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0 0 4px 0;
+    }
+    
+    .page-title-section p {
+        font-size: 14px;
+        color: #64748b;
+        margin: 0;
+    }
+    
+    .page-actions {
+        display: flex;
+        gap: 12px;
+    }
+    
+    .btn-primary-custom {
+        background: #6366f1;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-primary-custom:hover {
+        background: #4f46e5;
+    }
+    
+    .btn-outline-custom {
+        background: transparent;
+        color: #6b7280;
+        border: 1px solid #d1d5db;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-outline-custom:hover {
+        background: #f3f4f6;
+        color: #374151;
+    }
+    
+    @media (max-width: 768px) {
+        .form-row {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        
+        .page-header-custom {
+            flex-direction: column;
+            gap: 16px;
+            align-items: stretch;
+        }
+        
+        .page-actions {
+            justify-content: flex-end;
+        }
+        
+        .logo-upload-section {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header-custom">
+    <div class="page-title-section">
+        <h1>Upcoming IPO Information</h1>
+        <p>Manage your IPO Details</p>
+    </div>
+    <div class="page-actions">
+        <button type="submit" form="ipoForm" class="btn-primary-custom">
+            Register
+        </button>
+        <a href="{% url 'ipo_app:admin_ipo_list' %}" class="btn-outline-custom">
+            Cancel
+        </a>
+    </div>
+</div>
+
+<form id="ipoForm" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <!-- IPO Information Section -->
+    <div class="form-section">
+        <div class="section-header">
+            <h2 class="section-title">IPO Information</h2>
+            <p class="section-subtitle">Free IPO Details</p>
+        </div>
+        
+        <div class="section-body">
+            <!-- Company Logo -->
+            <div class="form-group">
+                <label class="form-label-custom">Company Logo</label>
+                <div class="logo-upload-section">
+                    <div class="logo-preview" id="logoPreview">
+                        {% if ipo and ipo.logo %}
+                            <img src="{{ ipo.logo.url }}" alt="{{ ipo.company_name }}" id="logoImage">
+                        {% else %}
+                            <div id="logoPlaceholder">
+                                Not India<br>
+                                <small>Logo</small>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="logo-actions">
+                        <label for="logoInput" class="btn-upload">
+                            Upload Logo
+                        </label>
+                        <button type="button" class="btn-delete" onclick="deleteLogo()">
+                            Delete
+                        </button>
+                        <input type="file" id="logoInput" name="logo" accept="image/*" style="display: none;" onchange="previewLogo(this)">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Company Name and Price Band -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label-custom">Company Name</label>
+                    <input type="text" class="form-control-custom" name="company_name" 
+                           placeholder="Not listed"
+                           value="{% if ipo %}{{ ipo.company_name }}{% endif %}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label-custom">Price Band</label>
+                    <input type="text" class="form-control-custom" name="price_band" 
+                           placeholder="Not listed"
+                           value="{% if ipo %}{{ ipo.price_band }}{% endif %}" required>
+                </div>
+            </div>
+            
+            <!-- Open and Close Dates -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label-custom">Open</label>
+                    <input type="date" class="form-control-custom" name="open_date" 
+                           placeholder="Not listed"
+                           value="{% if ipo %}{{ ipo.open_date|date:'Y-m-d' }}{% endif %}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label-custom">Close</label>
+                    <input type="date" class="form-control-custom" name="close_date" 
+                           placeholder="Not listed"
+                           value="{% if ipo %}{{ ipo.close_date|date:'Y-m-d' }}{% endif %}" required>
+                </div>
+            </div>
+            
+            <!-- Issue Size and Issue Type -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label-custom">Issue Size</label>
+                    <input type="text" class="form-control-custom" name="issue_size" 
+                           placeholder="2,500 Cr"
+                           value="{% if ipo %}{{ ipo.issue_size }}{% endif %}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label-custom">Issue Type</label>
+                    <select class="form-control-custom" name="issue_type" required>
+                        <option value="">Select Issue Type</option>
+                        <option value="mainboard" {% if ipo.issue_type == 'mainboard' %}selected{% endif %}>Book Built</option>
+                        <option value="sme" {% if ipo.issue_type == 'sme' %}selected{% endif %}>SME</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Listing Date and Status -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label-custom">LISTING DATE</label>
+                    <input type="date" class="form-control-custom" name="listing_date" 
+                           placeholder="Not listed"
+                           value="{% if ipo.listing_date %}{{ ipo.listing_date|date:'Y-m-d' }}{% endif %}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label-custom">Status</label>
+                    <select class="form-control-custom" name="status" required>
+                        <option value="">Select Status</option>
+                        <option value="upcoming" {% if ipo.status == 'upcoming' %}selected{% endif %}>Upcoming</option>
+                        <option value="ongoing" {% if ipo.status == 'ongoing' %}selected{% endif %}>Ongoing</option>
+                        <option value="listed" {% if ipo.status == 'listed' %}selected{% endif %}>Listed</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- NEW LISTED IPO DETAILS Section -->
+    <div class="form-section">
+        <div class="section-body">
+            <div class="section-divider">
+                <h3 class="section-divider-title">NEW LISTED IPO DETAILS (WHEN IPO GET LISTED)</h3>
+            </div>
+            
+            <!-- IPO Price and Listing Price -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label-custom">IPO PRICE</label>
+                    <input type="number" step="0.01" class="form-control-custom" name="ipo_price" 
+                           placeholder="₹ 310"
+                           value="{% if ipo.ipo_price %}{{ ipo.ipo_price }}{% endif %}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label-custom">LISTING PRICE</label>
+                    <input type="number" step="0.01" class="form-control-custom" name="listing_price" 
+                           placeholder="₹ 420"
+                           value="{% if ipo.listing_price %}{{ ipo.listing_price }}{% endif %}">
+                </div>
+            </div>
+            
+            <!-- Listing Gain and Listing Date -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label-custom">LISTING GAIN</label>
+                    <input type="text" class="form-control-custom" name="listing_gain" 
+                           placeholder="15.56 %"
+                           value="{% if ipo.listing_gain %}{{ ipo.listing_gain }}%{% endif %}" readonly>
+                </div>
+                <div class="form-group">
+                    <label class="form-label-custom">LISTING DATE</label>
+                    <input type="date" class="form-control-custom" name="listing_date_display" 
+                           placeholder="2024-05-30"
+                           value="{% if ipo.listing_date %}{{ ipo.listing_date|date:'Y-m-d' }}{% endif %}">
+                </div>
+            </div>
+            
+            <!-- CMP and Current Return -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label-custom">CMP</label>
+                    <input type="number" step="0.01" class="form-control-custom" name="current_market_price" 
+                           placeholder="₹410"
+                           value="{% if ipo.current_market_price %}{{ ipo.current_market_price }}{% endif %}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label-custom">CURRENT RETURN</label>
+                    <input type="text" class="form-control-custom" name="current_return" 
+                           placeholder="7.65 %"
+                           value="{% if ipo.current_return %}{{ ipo.current_return }}%{% endif %}" readonly>
+                </div>
+            </div>
+            
+            <!-- RHP and DRHP -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label-custom">RHP</label>
+                    <div class="file-upload-area" onclick="document.getElementById('rhpInput').click()">
+                        <p class="file-upload-text">Enter RHP PDF Link</p>
+                        <input type="file" id="rhpInput" name="rhp_pdf" accept=".pdf" style="display: none;" onchange="updateFileName(this, 'rhpText')">
+                    </div>
+                    {% if ipo.rhp_pdf %}
+                        <small class="text-muted">Current: <a href="{{ ipo.rhp_pdf.url }}" target="_blank">View RHP</a></small>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="form-label-custom">DRHP</label>
+                    <div class="file-upload-area" onclick="document.getElementById('drhpInput').click()">
+                        <p class="file-upload-text">Enter DRHP PDF Link</p>
+                        <input type="file" id="drhpInput" name="drhp_pdf" accept=".pdf" style="display: none;" onchange="updateFileName(this, 'drhpText')">
+                    </div>
+                    {% if ipo.drhp_pdf %}
+                        <small class="text-muted">Current: <a href="{{ ipo.drhp_pdf.url }}" target="_blank">View DRHP</a></small>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Company Description -->
+            <div class="form-row-single">
+                <div class="form-group">
+                    <label class="form-label-custom">Company Description</label>
+                    <textarea class="form-control-custom" name="description" rows="4" 
+                              placeholder="Enter company description...">{% if ipo %}{{ ipo.description }}{% endif %}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Logo preview functionality
+function previewLogo(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const logoPreview = document.getElementById('logoPreview');
+            logoPreview.innerHTML = `<img src="${e.target.result}" alt="Logo Preview" id="logoImage">`;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// Delete logo functionality
+function deleteLogo() {
+    const logoPreview = document.getElementById('logoPreview');
+    logoPreview.innerHTML = `
+        <div id="logoPlaceholder">
+            Not India<br>
+            <small>Logo</small>
+        </div>
+    `;
+    document.getElementById('logoInput').value = '';
+}
+
+// Update file name display
+function updateFileName(input, textId) {
+    const fileName = input.files[0] ? input.files[0].name : 'Enter PDF Link';
+    const textElement = input.parentElement.querySelector('.file-upload-text');
+    textElement.textContent = fileName;
+}
+
+// Auto-calculate listing gain and current return
+function calculateReturns() {
+    const ipoPrice = parseFloat(document.querySelector('input[name="ipo_price"]').value) || 0;
+    const listingPrice = parseFloat(document.querySelector('input[name="listing_price"]').value) || 0;
+    const currentPrice = parseFloat(document.querySelector('input[name="current_market_price"]').value) || 0;
+    
+    // Calculate listing gain
+    if (ipoPrice && listingPrice) {
+        const listingGain = ((listingPrice - ipoPrice) / ipoPrice * 100).toFixed(2);
+        document.querySelector('input[name="listing_gain"]').value = `${listingGain} %`;
+    }
+    
+    // Calculate current return
+    if (ipoPrice && currentPrice) {
+        const currentReturn = ((currentPrice - ipoPrice) / ipoPrice * 100).toFixed(2);
+        document.querySelector('input[name="current_return"]').value = `${currentReturn} %`;
+    }
+}
+
+// Add event listeners for auto-calculation
+document.querySelector('input[name="ipo_price"]').addEventListener('input', calculateReturns);
+document.querySelector('input[name="listing_price"]').addEventListener('input', calculateReturns);
+document.querySelector('input[name="current_market_price"]').addEventListener('input', calculateReturns);
+
+// Form validation
+document.getElementById('ipoForm').addEventListener('submit', function(e) {
+    const openDate = new Date(document.querySelector('input[name="open_date"]').value);
+    const closeDate = new Date(document.querySelector('input[name="close_date"]').value);
+    
+    if (openDate >= closeDate) {
+        e.preventDefault();
+        alert('Close date must be after open date.');
+        return;
+    }
+    
+    // Validate required fields
+    const requiredFields = ['company_name', 'price_band', 'open_date', 'close_date', 'issue_size', 'issue_type', 'status'];
+    for (let field of requiredFields) {
+        const input = document.querySelector(`[name="${field}"]`);
+        if (!input.value.trim()) {
+            e.preventDefault();
+            alert(`Please fill in the ${field.replace('_', ' ')} field.`);
+            input.focus();
+            return;
+        }
+    }
+});
+
+// Initialize calculations on page load
+document.addEventListener('DOMContentLoaded', function() {
+    calculateReturns();
+});
+</script>
+{% endblock %}

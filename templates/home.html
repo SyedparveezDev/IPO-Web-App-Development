@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}IPO Portal - Bluestock{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Hero Section -->
+    <section class="hero-section bg-gradient text-white py-5 mb-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Discover Latest IPO Opportunities</h1>
+                    <p class="lead mb-4">Stay updated with upcoming, ongoing, and listed IPOs. Make informed investment decisions with comprehensive IPO data.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#upcoming-ipos" class="btn btn-light btn-lg">
+                            <i class="bi bi-calendar-event me-2"></i>View Upcoming IPOs
+                        </a>
+                        <a href="#ongoing-ipos" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-clock me-2"></i>Active IPOs
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="bi bi-graph-up-arrow display-1"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section mb-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card text-center border-0 shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-calendar-plus text-primary display-6 mb-3"></i>
+                            <h3 class="card-title">{{ upcoming_ipos|length }}</h3>
+                            <p class="card-text text-muted">Upcoming IPOs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center border-0 shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-clock text-warning display-6 mb-3"></i>
+                            <h3 class="card-title">{{ ongoing_ipos|length }}</h3>
+                            <p class="card-text text-muted">Ongoing IPOs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center border-0 shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-check-circle text-success display-6 mb-3"></i>
+                            <h3 class="card-title">{{ listed_ipos|length }}</h3>
+                            <p class="card-text text-muted">Listed IPOs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center border-0 shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-graph-up text-info display-6 mb-3"></i>
+                            <h3 class="card-title">{{ total_count }}</h3>
+                            <p class="card-text text-muted">Total IPOs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <form method="GET" class="row g-3 align-items-end">
+                                <div class="col-md-4">
+                                    <label for="statusFilter" class="form-label">Filter by Status</label>
+                                    <select class="form-select" id="statusFilter" name="status">
+                                        <option value="">All Status</option>
+                                        <option value="upcoming" {% if status_filter == 'upcoming' %}selected{% endif %}>Upcoming</option>
+                                        <option value="ongoing" {% if status_filter == 'ongoing' %}selected{% endif %}>Ongoing</option>
+                                        <option value="listed" {% if status_filter == 'listed' %}selected{% endif %}>Listed</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="searchFilter" class="form-label">Search IPOs</label>
+                                    <input type="text" class="form-control" id="searchFilter" name="search" 
+                                           placeholder="Search by company name..." value="{{ search_query }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="bi bi-funnel me-1"></i>Filter
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming IPOs Section -->
+    {% if upcoming_ipos %}
+    <section id="upcoming-ipos" class="mb-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title">
+                    <i class="bi bi-calendar-event text-primary me-2"></i>
+                    Upcoming IPOs
+                </h2>
+                <a href="?status=upcoming" class="btn btn-outline-primary">View All</a>
+            </div>
+            <div class="row g-4">
+                {% for ipo in upcoming_ipos %}
+                <div class="col-lg-4 col-md-6">
+                    {% include 'partials/ipo_card.html' with ipo=ipo %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Ongoing IPOs Section -->
+    {% if ongoing_ipos %}
+    <section id="ongoing-ipos" class="mb-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title">
+                    <i class="bi bi-clock text-warning me-2"></i>
+                    Ongoing IPOs
+                </h2>
+                <a href="?status=ongoing" class="btn btn-outline-warning">View All</a>
+            </div>
+            <div class="row g-4">
+                {% for ipo in ongoing_ipos %}
+                <div class="col-lg-4 col-md-6">
+                    {% include 'partials/ipo_card.html' with ipo=ipo %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Listed IPOs Section -->
+    {% if listed_ipos %}
+    <section id="listed-ipos" class="mb-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title">
+                    <i class="bi bi-check-circle text-success me-2"></i>
+                    Recently Listed IPOs
+                </h2>
+                <a href="?status=listed" class="btn btn-outline-success">View All</a>
+            </div>
+            <div class="row g-4">
+                {% for ipo in listed_ipos %}
+                <div class="col-lg-4 col-md-6">
+                    {% include 'partials/ipo_card.html' with ipo=ipo %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- All IPOs Section (when filtered) -->
+    {% if status_filter or search_query %}
+    <section class="mb-5">
+        <div class="container">
+            <h2 class="section-title mb-4">
+                {% if search_query %}
+                    Search Results for "{{ search_query }}"
+                {% else %}
+                    {{ status_filter|title }} IPOs
+                {% endif %}
+                <small class="text-muted">({{ total_count }} found)</small>
+            </h2>
+            
+            {% if all_ipos %}
+            <div class="row g-4">
+                {% for ipo in all_ipos %}
+                <div class="col-lg-4 col-md-6">
+                    {% include 'partials/ipo_card.html' with ipo=ipo %}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination -->
+            {% if all_ipos.has_other_pages %}
+            <nav aria-label="IPO pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    {% if all_ipos.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ all_ipos.previous_page_number }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">Previous</a>
+                        </li>
+                    {% endif %}
+                    
+                    {% for num in all_ipos.paginator.page_range %}
+                        {% if all_ipos.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if all_ipos.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ all_ipos.next_page_number }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+            {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-search display-1 text-muted mb-3"></i>
+                <h3>No IPOs Found</h3>
+                <p class="text-muted">Try adjusting your search criteria or filters.</p>
+                <a href="{% url 'ipo_app:home' %}" class="btn btn-primary">View All IPOs</a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Auto-submit form on filter change
+document.getElementById('statusFilter').addEventListener('change', function() {
+    this.form.submit();
+});
+
+// Search suggestions (basic implementation)
+document.getElementById('searchInput').addEventListener('input', function() {
+    const query = this.value;
+    if (query.length > 2) {
+        // You can implement AJAX search suggestions here
+        console.log('Searching for:', query);
+    }
+});
+</script>
+{% endblock %}
