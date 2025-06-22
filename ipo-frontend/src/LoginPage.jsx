@@ -1,81 +1,97 @@
-import { useState } from "react"
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Login() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
-  const handleLogin = (e) => {
-    e.preventDefault()
-    // Your login logic goes here
-    console.log({ email, password })
-  }
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: Add real login logic here
+    console.log({ email, password });
+  };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
-      <div className="w-full max-w-md px-8 py-10 shadow-lg border rounded-lg">
-        <div className="text-center mb-6">
-          <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight">
-            <span className="text-violet-600">▮▮</span> BLUESTOCK
-          </h1>
+    <div className="min-h-screen flex items-center justify-center bg-white px-4">
+      <div className="max-w-md w-full space-y-8">
+        {/* Logo */}
+        <div className="text-center">
+          <img src="/logo.png" alt="Bluestock" className="mx-auto h-10 w-auto" />
+          <h2 className="mt-6 text-2xl font-extrabold text-gray-900 tracking-wide">
+            BLUESTOCK
+          </h2>
         </div>
 
-        <form onSubmit={handleLogin} className="space-y-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Email Address
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="mt-1 w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
-              placeholder="johndoe@gmail.com"
-            />
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Email Address</label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center">
+                <label className="block text-sm font-medium text-gray-700">Password</label>
+                <a href="#" className="text-sm text-indigo-500 hover:underline">Forgot Password?</a>
+              </div>
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+              />
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <input type="checkbox" id="remember" className="h-4 w-4 text-indigo-600" />
+              <label htmlFor="remember" className="text-sm text-gray-700">Keep me signed in</label>
+            </div>
+
+            <div>
+              {/* Simulated reCAPTCHA */}
+              <div className="border border-gray-300 p-2 rounded-md flex items-center justify-between">
+                <span className="text-sm text-gray-700">I'm not a robot</span>
+                <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="captcha" className="h-6" />
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-md hover:bg-indigo-700 transition"
+              >
+                Login
+              </button>
+            </div>
+          </div>
+
+          {/* OR divider */}
+          <div className="relative text-center">
+            <span className="text-sm text-gray-400 bg-white px-2">or sign in with</span>
+            <hr className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 border-gray-300" />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Password <span className="float-right text-xs text-blue-600 cursor-pointer hover:underline">Forgot Password?</span>
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="mt-1 w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
-            />
+            <button className="w-full bg-gray-100 border border-gray-300 py-2 rounded-md text-sm flex justify-center items-center space-x-2 hover:bg-gray-200">
+              <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="h-5 w-5" alt="Google" />
+              <span>Continue with Google</span>
+            </button>
           </div>
 
-          <div className="flex items-center gap-2">
-            <input type="checkbox" className="accent-violet-600" />
-            <label className="text-sm text-gray-700">Keep me signed in</label>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200"
-          >
-            Login
-          </button>
-
-          <div className="text-center text-sm text-gray-400">or sign in with</div>
-
-          <button
-            type="button"
-            className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-md hover:bg-gray-50"
-          >
-            <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5 mr-2" alt="Google" />
-            Continue with Google
-          </button>
+          <p className="text-center text-sm text-indigo-600 font-medium mt-4">
+            <Link to="/register">Create an account</Link>
+          </p>
         </form>
-
-        <div className="text-center mt-6">
-          <a href="/register" className="text-sm text-blue-600 hover:underline">
-            Create an account
-          </a>
-        </div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default Login;
