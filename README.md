@@ -208,6 +208,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 - **Quick Links Panel** for external financial platforms
 
 ### IPO Management Interface
+
 - **Advanced Data Table** with sorting and filtering
 - **Status Badges** with color-coded indicators
 - **Action Buttons** for CRUD operations
