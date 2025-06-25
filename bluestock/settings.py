@@ -65,9 +65,9 @@ WSGI_APPLICATION = 'bluestock.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'your_db_name',       # replace with actual name
+        'NAME': 'ipo_db',       # replace with actual name
         'USER': 'postgres',
-        'PASSWORD': 'Afham@123',      # <-- update here
+        'PASSWORD': 'admin123',      # <-- update here
         'HOST': 'localhost',
         'PORT': '5432',
     }
