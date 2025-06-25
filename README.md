@@ -128,7 +128,8 @@ GRANT ALL PRIVILEGES ON DATABASE ipo_admin_db TO ipo_admin_user;
 python manage.py makemigrations
 python manage.py migrate
 
-# Create superuser
+### Create superuser
+
 python manage.py createsuperuser
 
 ## Load sample data (optional)
