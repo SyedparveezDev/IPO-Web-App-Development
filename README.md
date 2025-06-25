@@ -224,6 +224,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 ## 🔒 Security Features
 
 ### Backend Security
+
 - CSRF protection on all forms
 - SQL injection prevention with ORM
 - File upload validation and sanitization
