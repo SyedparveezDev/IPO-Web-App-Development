@@ -195,6 +195,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 - File upload and categorization
 
 ### IPO News Model
+
 - News and updates related to IPOs
 - Source tracking and publication dates
 - Content management
