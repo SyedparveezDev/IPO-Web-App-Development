@@ -3,186 +3,433 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLUESTOCK - Authentication</title>
+    <title>IPO Admin Dashboard - Bluestock Fintech</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row min-vh-100">
-            <div class="col-12 d-flex align-items-center justify-content-center">
-                <div class="auth-container">
-                    <!-- Logo -->
-                    <div class="text-center mb-4">
-                        <img src="/static/images/logo.png" alt="BLUESTOCK" class="logo">
+    <!-- Header -->
+    <header class="main-header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+            <div class="container-fluid px-4">
+                <!-- Logo -->
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <div class="brand-logo">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="4" width="6" height="24" fill="#6366f1" rx="2"/>
+                            <rect x="13" y="8" width="6" height="20" fill="#8b5cf6" rx="2"/>
+                            <rect x="22" y="12" width="6" height="16" fill="#a855f7" rx="2"/>
+                        </svg>
                     </div>
+                    <span class="brand-text ms-2">BLUESTOCK</span>
+                </a>
 
-                    <!-- Alert Container -->
-                    <div id="alert-container"></div>
+                <!-- Mobile Menu Toggle -->
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <!-- Login Section -->
-                    <div id="login-section" class="auth-section">
-                        <form id="login-form" class="auth-form">
-                            <div class="mb-3">
-                                <label for="login-email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="login-email" placeholder="johndoe@gmail.com" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <label for="login-password" class="form-label">Password</label>
-                                    <a href="#" class="forgot-password-link" onclick="showSection('forgot-password')">Forgot Password?</a>
+                <!-- Navigation Menu -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="dashboard">IPO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="manage-ipo">COMMUNITY</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                PRODUCTS
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" data-section="dashboard">Dashboard</a></li>
+                                <li><a class="dropdown-item" href="#" data-section="manage-ipo">IPO Management</a></li>
+                                <li><a class="dropdown-item" href="#" data-section="ipo-subscription">Subscriptions</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                BROKERS
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">NSE</a></li>
+                                <li><a class="dropdown-item" href="#">BSE</a></li>
+                                <li><a class="dropdown-item" href="#">SEBI</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center" href="#">
+                                LIVE NEWS
+                                <span class="badge bg-primary ms-2">LIVE</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Action Buttons -->
+                    <div class="navbar-actions d-flex align-items-center">
+                        <button class="btn btn-link text-muted me-3" type="button">
+                            Sign In
+                        </button>
+                        <button class="btn btn-primary" type="button">
+                            Sign Up Now
+                        </button>
+                        <div class="dropdown ms-3">
+                            <button class="btn btn-link text-muted" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#" data-section="dashboard">Dashboard</a></li>
+                                <li><a class="dropdown-item" href="#" data-section="settings">Settings</a></li>
+                                <li><a class="dropdown-item" href="#" data-section="help">Help</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-brand">
+                    <i class="fas fa-chart-line text-primary"></i>
+                    <span class="brand-text">Admin Panel</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <span class="menu-title">MENU</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" data-section="dashboard">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="manage-ipo">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Manage IPO</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="ipo-subscription">
+                                <i class="fas fa-file-contract"></i>
+                                <span>IPO Subscription</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="ipo-allotment">
+                                <i class="fas fa-clipboard-list"></i>
+                                <span>IPO Allotment</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-section">
+                    <span class="menu-title">OTHERS</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="settings">
+                                <i class="fas fa-cog"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="api-manager">
+                                <i class="fas fa-code"></i>
+                                <span>API Manager</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="accounts">
+                                <i class="fas fa-users"></i>
+                                <span>Accounts</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="help">
+                                <i class="fas fa-question-circle"></i>
+                                <span>Help</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div id="content" class="content">
+            <!-- Top Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom admin-navbar">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <div class="navbar-nav ms-auto">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                                <div class="user-avatar me-2">
+                                    <i class="fas fa-user"></i>
                                 </div>
-                                <div class="password-input-container">
-                                    <input type="password" class="form-control" id="login-password" placeholder="••••••••••••" required>
-                                    <button type="button" class="password-toggle" onclick="togglePassword('login-password')">
-                                        <i class="fas fa-eye"></i>
+                                <span>Hi, Vishal</span>
+                                <i class="fas fa-chevron-down ms-2"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav-item">
+                            <a class="nav-link position-relative" href="#">
+                                <i class="fas fa-bell"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    3
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Dashboard Section -->
+                <div id="dashboard-section" class="content-section active">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="page-title">Dashboard</h2>
+                            <div class="page-actions">
+                                <div class="input-group search-box">
+                                    <input type="text" class="form-control" placeholder="Search..." id="dashboard-search">
+                                    <button class="btn btn-outline-secondary" type="button">
+                                        <i class="fas fa-search"></i>
                                     </button>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- reCAPTCHA -->
-                            <div class="mb-3">
-                                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                        <!-- Stats Cards -->
+                        <div class="row mb-4">
+                            <div class="col-lg-8">
+                                <div class="card stats-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">IPO Dashboard India</h5>
+                                        <div class="stats-circles">
+                                            <div class="stat-circle stat-loss">
+                                                <div class="circle-content">
+                                                    <span class="stat-number" id="loss-count">9</span>
+                                                    <span class="stat-label">IPO in Loss</span>
+                                                </div>
+                                            </div>
+                                            <div class="stat-circle stat-total">
+                                                <div class="circle-content">
+                                                    <span class="stat-number" id="total-count">30</span>
+                                                    <span class="stat-label">Total IPO</span>
+                                                </div>
+                                            </div>
+                                            <div class="stat-circle stat-gain">
+                                                <div class="circle-content">
+                                                    <span class="stat-number" id="gain-count">20</span>
+                                                    <span class="stat-label">IPO in Gain</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="remember-me">
-                                <label class="form-check-label" for="remember-me">
-                                    Keep me signed in
-                                </label>
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h6 class="card-title mb-0">Main Board IPO</h6>
+                                            <a href="#" class="text-primary">View Report</a>
+                                        </div>
+                                        <p class="text-muted small">From 01 Jan 2024</p>
+                                        <div class="chart-container">
+                                            <canvas id="mainBoardChart"></canvas>
+                                        </div>
+                                        <div class="chart-legend mt-3">
+                                            <div class="legend-item">
+                                                <span class="legend-color bg-primary"></span>
+                                                <span class="legend-text">Upcoming <span class="legend-count" id="upcoming-legend">15</span></span>
+                                            </div>
+                                            <div class="legend-item">
+                                                <span class="legend-color bg-success"></span>
+                                                <span class="legend-text">New Listed <span class="legend-count" id="new-listed-legend">25</span></span>
+                                            </div>
+                                            <div class="legend-item">
+                                                <span class="legend-color bg-warning"></span>
+                                                <span class="legend-text">Ongoing <span class="legend-count" id="ongoing-legend">2</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
 
-                            <button type="submit" class="btn btn-primary w-100 mb-3" id="login-btn">
-                                <span class="btn-text">Login</span>
-                                <span class="btn-spinner d-none">
-                                    <i class="fas fa-spinner fa-spin"></i>
-                                </span>
-                            </button>
-
-                            <div class="divider">
-                                <span>or sign in with</span>
+                        <!-- Quick Links -->
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-4">Quick Links</h5>
+                                        <div class="quick-links" id="quick-links-container">
+                                            <!-- Quick links will be loaded here -->
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-                            <button type="button" class="btn btn-google w-100 mb-3">
-                                <i class="fab fa-google me-2"></i>
-                                Continue with Google
-                            </button>
-
-                            <div class="text-center">
-                                <a href="#" class="create-account-link" onclick="showSection('register')">Create an account</a>
-                            </div>
-                        </form>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Register Section -->
-                    <div id="register-section" class="auth-section d-none">
-                        <h4 class="text-center mb-4">Create an account</h4>
-                        
-                        <form id="register-form" class="auth-form">
-                            <div class="mb-3">
-                                <label for="register-name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="register-name" placeholder="Shrutika Shinde" required>
-                            </div>
+                <!-- Manage IPO Section -->
+                <div id="manage-ipo-section" class="content-section">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="page-title">Upcoming IPO | Dashboard</h2>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerIPOModal">
+                                Register IPO
+                            </button>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="register-email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="register-email" placeholder="hello@bluestock.in" required>
+                        <!-- Filters -->
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <select class="form-select" id="status-filter">
+                                    <option value="">All Status</option>
+                                    <option value="upcoming">Upcoming</option>
+                                    <option value="ongoing">Ongoing</option>
+                                    <option value="new_listed">New Listed</option>
+                                    <option value="confirming">Confirming</option>
+                                </select>
                             </div>
-                            
-                            <div class="mb-3">
-                                <label for="register-password" class="form-label">Password</label>
-                                <div class="password-input-container">
-                                    <input type="password" class="form-control" id="register-password" placeholder="••••••••••••" required>
-                                    <button type="button" class="password-toggle" onclick="togglePassword('register-password')">
-                                        <i class="fas fa-eye"></i>
+                            <div class="col-md-3">
+                                <input type="date" class="form-control" id="date-from" placeholder="From Date">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="date" class="form-control" id="date-to" placeholder="To Date">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search company..." id="company-search">
+                                    <button class="btn btn-outline-secondary" type="button">
+                                        <i class="fas fa-search"></i>
                                     </button>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="register-password-confirm" class="form-label">Confirm Password</label>
-                                <div class="password-input-container">
-                                    <input type="password" class="form-control" id="register-password-confirm" placeholder="••••••••••••" required>
-                                    <button type="button" class="password-toggle" onclick="togglePassword('register-password-confirm')">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
+                        <!-- IPO Table -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="ipo-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Company</th>
+                                                <th>Price Band</th>
+                                                <th>Open</th>
+                                                <th>Close</th>
+                                                <th>Issue Size</th>
+                                                <th>Issue Type</th>
+                                                <th>Listing Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                                <th>Delete/View</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ipo-table-body">
+                                            <!-- IPO data will be loaded here -->
+                                        </tbody>
+                                    </table>
                                 </div>
+
+                                <!-- Pagination -->
+                                <nav aria-label="IPO pagination">
+                                    <ul class="pagination justify-content-center" id="pagination">
+                                        <!-- Pagination will be generated here -->
+                                    </ul>
+                                </nav>
                             </div>
-
-                            <div class="mb-3">
-                                <small class="text-muted">
-                                    By continuing, you agree to our <a href="#" class="terms-link">terms of service</a>.
-                                </small>
-                            </div>
-
-                            <!-- reCAPTCHA -->
-                            <div class="mb-3">
-                                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary w-100 mb-3" id="register-btn">
-                                <span class="btn-text">Sign up</span>
-                                <span class="btn-spinner d-none">
-                                    <i class="fas fa-spinner fa-spin"></i>
-                                </span>
-                            </button>
-
-                            <div class="divider">
-                                <span>or sign up with</span>
-                            </div>
-
-                            <button type="button" class="btn btn-google w-100 mb-3">
-                                <i class="fab fa-google me-2"></i>
-                                Continue with Google
-                            </button>
-
-                            <div class="text-center">
-                                <span class="text-muted">Already have an account? </span>
-                                <a href="#" class="sign-in-link" onclick="showSection('login')">Sign in here</a>
-                            </div>
-                        </form>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Forgot Password Section -->
-                    <div id="forgot-password-section" class="auth-section d-none">
-                        <h4 class="text-center mb-3">Forgot Password?</h4>
-                        <p class="text-center text-muted mb-4">
-                            Enter your email address to get the password reset link.
-                        </p>
-                        
-                        <form id="forgot-password-form" class="auth-form">
-                            <div class="mb-4">
-                                <label for="forgot-email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="forgot-email" placeholder="hello@bluestock.in" required>
+                <!-- Other sections placeholders -->
+                <div id="ipo-subscription-section" class="content-section">
+                    <div class="container-fluid">
+                        <h2 class="page-title">IPO Subscription</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <p>IPO Subscription management coming soon...</p>
                             </div>
-
-                            <button type="submit" class="btn btn-primary w-100 mb-4" id="forgot-password-btn">
-                                <span class="btn-text">Password Reset</span>
-                                <span class="btn-spinner d-none">
-                                    <i class="fas fa-spinner fa-spin"></i>
-                                </span>
-                            </button>
-
-                            <div class="text-center">
-                                <a href="#" class="back-to-login-link" onclick="showSection('login')">Back to login</a>
-                            </div>
-                        </form>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Success Section (Hidden by default) -->
-                    <div id="success-section" class="auth-section d-none">
-                        <div class="text-center">
-                            <div class="success-icon mb-3">
-                                <i class="fas fa-check-circle"></i>
+                <div id="ipo-allotment-section" class="content-section">
+                    <div class="container-fluid">
+                        <h2 class="page-title">IPO Allotment</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <p>IPO Allotment management coming soon...</p>
                             </div>
-                            <h4 class="mb-3">Welcome to BLUESTOCK!</h4>
-                            <p class="text-muted mb-4">Your account has been created successfully.</p>
-                            <button class="btn btn-primary" onclick="showDashboard()">
-                                Continue to Dashboard
-                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="settings-section" class="content-section">
+                    <div class="container-fluid">
+                        <h2 class="page-title">Settings</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Settings panel coming soon...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="api-manager-section" class="content-section">
+                    <div class="container-fluid">
+                        <h2 class="page-title">API Manager</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <p>API management coming soon...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="accounts-section" class="content-section">
+                    <div class="container-fluid">
+                        <h2 class="page-title">Accounts</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Account management coming soon...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="help-section" class="content-section">
+                    <div class="container-fluid">
+                        <h2 class="page-title">Help</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Help documentation coming soon...</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,7 +437,463 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="main-footer bg-white border-top">
+        <div class="container-fluid">
+            <div class="row py-5">
+                <!-- Resources Column -->
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <h6 class="footer-title">Resources</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Trading View</a></li>
+                        <li><a href="#">NSE Holidays</a></li>
+                        <li><a href="#">e-Voting CDSL</a></li>
+                        <li><a href="#">e-Voting NSDL</a></li>
+                        <li><a href="#">Market Timings</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Column -->
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <h6 class="footer-title">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Offerings Column -->
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <h6 class="footer-title">Offerings</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Compare Broker</a></li>
+                        <li><a href="#">Pin Calculators</a></li>
+                        <li><a href="#">IPO</a></li>
+                        <li><a href="#">All Brokers</a></li>
+                        <li><a href="#">Products</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links Column -->
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <h6 class="footer-title">Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Share Investor</a></li>
+                        <li><a href="#">Mutual Funds</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                        <li><a href="#">Indian Indices</a></li>
+                        <li><a href="#">Bug Bounty Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Policy Column -->
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <h6 class="footer-title">Policy</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                        <li><a href="#">Trust & Security</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media & Contact -->
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="social-media mb-4">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="row border-top pt-4 pb-4">
+                <div class="col-lg-6 mb-3">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="brand-logo me-2">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="4" y="4" width="6" height="24" fill="#6366f1" rx="2"/>
+                                <rect x="13" y="8" width="6" height="20" fill="#8b5cf6" rx="2"/>
+                                <rect x="22" y="12" width="6" height="16" fill="#a855f7" rx="2"/>
+                            </svg>
+                        </div>
+                        <span class="brand-text fw-bold">BLUESTOCK</span>
+                    </div>
+                    <div class="company-info">
+                        <p class="mb-1"><strong>Bluestock Fintech</strong></p>
+                        <p class="mb-1">Pune, Maharashtra</p>
+                        <p class="mb-1">MSME Registration No:</p>
+                        <p class="mb-3">UDYAM-MH-01-0078500</p>
+                        
+                        <div class="startup-india mb-3">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTIwIDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkY2NzAwIiByeD0iNCIvPgo8dGV4dCB4PSI2MCIgeT0iMjQiIGZpbGw9IndoaXRlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4jc3RhcnR1cGluZGlhPC90ZXh0Pgo8L3N2Zz4K" alt="Startup India" class="startup-logo">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="disclaimer">
+                        <p class="small text-muted mb-2">
+                            Investment in securities markets are subject to market risks, read all the related documents carefully before investing or 
+                            as prescribed by SEBI. Issued in the interest of the investors.
+                        </p>
+                        <p class="small text-muted mb-2">
+                            The users can write to <a href="mailto:help@bluestock.in" class="text-primary">help@bluestock.in</a> for any app, website related queries. Also you can send if / from related feedback to 
+                            <a href="mailto:cs@bluestock.in" class="text-primary">cs@bluestock.in</a>
+                        </p>
+                        <p class="small text-muted mb-2">
+                            <strong>Disclaimer:</strong> We are not a SEBI registered research analyst company. We do not provide any kind of stock recommendations, buy/
+                            sell stock tips, or investment and trading advice. All the stock scripts shown in the Bluestock app, website, or social media handles 
+                            are for educational purposes only.
+                        </p>
+                        <p class="small text-muted mb-2">
+                            Before making any investment in the financial market, it is advisable to consult with your financial advisor. Remember that stock 
+                            markets are subject to market risks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="row border-top pt-3">
+                <div class="col-12 text-center">
+                    <p class="mb-0 text-muted small">
+                        Bluestock Fintech All Rights Reserved. 
+                        <span class="ms-3">Made with ❤️ in Pune, Maharashtra</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Register IPO Modal -->
+    <div class="modal fade" id="registerIPOModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-plus-circle me-2"></i>
+                        Upcoming IPO Information
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="nav flex-column nav-pills" role="tablist">
+                                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#ipo-info-tab" type="button">
+                                    <i class="fas fa-info-circle me-2"></i>IPO Information
+                                </button>
+                                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#ipo-details-tab" type="button">
+                                    <i class="fas fa-file-alt me-2"></i>IPO Info
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="tab-content">
+                                <!-- IPO Information Tab -->
+                                <div class="tab-pane fade show active" id="ipo-info-tab">
+                                    <h6 class="mb-4">IPO Information</h6>
+                                    <p class="text-muted mb-4">Enter IPO Details</p>
+
+                                    <form id="ipo-form">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Company Logo</label>
+                                                    <div class="company-logo-upload">
+                                                        <div class="logo-preview">
+                                                            <i class="fas fa-building text-warning"></i>
+                                                            <span>HSE India</span>
+                                                            <small>Not Issued</small>
+                                                        </div>
+                                                        <div class="logo-actions">
+                                                            <button type="button" class="btn btn-primary btn-sm">Select Logo</button>
+                                                            <button type="button" class="btn btn-outline-secondary btn-sm">Remove</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Company Name</label>
+                                                    <select class="form-select" id="company-select" required>
+                                                        <option value="">Select Company</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Price Band</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">₹</span>
+                                                        <input type="number" class="form-control" id="price-min" placeholder="Min" step="0.01" required>
+                                                        <span class="input-group-text">-</span>
+                                                        <input type="number" class="form-control" id="price-max" placeholder="Max" step="0.01" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Open</label>
+                                                    <input type="date" class="form-control" id="open-date" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Close</label>
+                                                    <input type="date" class="form-control" id="close-date" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Issue Size</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">₹</span>
+                                                        <input type="number" class="form-control" id="issue-size" placeholder="Amount in Crores" step="0.01" required>
+                                                        <span class="input-group-text">Cr.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Issue Type</label>
+                                                    <select class="form-select" id="issue-type" required>
+                                                        <option value="">Select Type</option>
+                                                        <option value="book_built">Book Built</option>
+                                                        <option value="fixed_price">Fixed Price</option>
+                                                        <option value="rights_issue">Rights Issue</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Listing Date</label>
+                                                    <input type="date" class="form-control" id="listing-date">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Status</label>
+                                                    <select class="form-select" id="status" required>
+                                                        <option value="upcoming">Upcoming</option>
+                                                        <option value="ongoing">Ongoing</option>
+                                                        <option value="new_listed">New Listed</option>
+                                                        <option value="confirming">Confirming</option>
+                                                        <option value="closed">Closed</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h6 class="mt-4 mb-3">NEW LISTED IPO DETAILS (WHEN IPO GET LISTED)</h6>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">PO PRICE</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">₹</span>
+                                                        <input type="number" class="form-control" id="po-price" step="0.01">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">LISTING PRICE</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">₹</span>
+                                                        <input type="number" class="form-control" id="listing-price" step="0.01">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">LISTING GAIN</label>
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control" id="listing-gain" step="0.01">
+                                                        <span class="input-group-text">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">LISTING DATE</label>
+                                                    <input type="date" class="form-control" id="listing-date-detail">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">CAP</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">₹</span>
+                                                        <input type="number" class="form-control" id="market-cap" step="0.01">
+                                                        <span class="input-group-text">Cr.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">CURRENT RETURN</label>
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control" id="current-return" step="0.01">
+                                                        <span class="input-group-text">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">REP</label>
+                                                    <input type="text" class="form-control" id="registrar" placeholder="Enter Registrar Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">GRMP</label>
+                                                    <input type="text" class="form-control" id="lead-managers" placeholder="Enter Lead Managers">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- IPO Details Tab -->
+                                <div class="tab-pane fade" id="ipo-details-tab">
+                                    <h6 class="mb-4">Additional IPO Details</h6>
+                                    <form id="ipo-details-form">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Lot Size</label>
+                                                    <input type="number" class="form-control" id="lot-size" min="1" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Face Value</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">₹</span>
+                                                        <input type="number" class="form-control" id="face-value" step="0.01" value="10">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Fresh Issue (Cr.)</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">₹</span>
+                                                        <input type="number" class="form-control" id="fresh-issue" step="0.01">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Offer for Sale (Cr.)</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">₹</span>
+                                                        <input type="number" class="form-control" id="offer-for-sale" step="0.01">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Exchange</label>
+                                                    <select class="form-select" id="exchange">
+                                                        <option value="both">NSE & BSE</option>
+                                                        <option value="nse">NSE</option>
+                                                        <option value="bse">BSE</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">PE Ratio</label>
+                                                    <input type="number" class="form-control" id="pe-ratio" step="0.01">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h6 class="mt-4 mb-3">Subscription Details</h6>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Retail Subscription (x)</label>
+                                                    <input type="number" class="form-control" id="retail-subscription" step="0.01">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">QIB Subscription (x)</label>
+                                                    <input type="number" class="form-control" id="qib-subscription" step="0.01">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">NII Subscription (x)</label>
+                                                    <input type="number" class="form-control" id="nii-subscription" step="0.01">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="save-ipo-btn">
+                        <i class="fas fa-save me-2"></i>Save IPO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay d-none">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.min.js"></script>
     <script src="/static/js/app.js"></script>
 </body>
 </html>
