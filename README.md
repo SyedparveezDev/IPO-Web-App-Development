@@ -131,7 +131,7 @@ python manage.py migrate
 # Create superuser
 python manage.py createsuperuser
 
-# Load sample data (optional)
+## Load sample data (optional)
 python manage.py shell
 >>> exec(open('scripts/seed_data.py').read())
 \`\`\`
