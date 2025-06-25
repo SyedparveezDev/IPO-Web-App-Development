@@ -27,6 +27,7 @@ A comprehensive IPO (Initial Public Offering) administration dashboard applicati
    - Subscription data management
 
 ### Technical Features
+
 - ✅ RESTful API endpoints with Django REST Framework
 - ✅ PostgreSQL database with optimized queries
 - ✅ Responsive design with Bootstrap 5
