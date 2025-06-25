@@ -92,7 +92,6 @@ ipo-admin-dashboard/
 ## 🚀 Setup Instructions
 
 ### 1. Prerequisites
-
 - Python 3.12.3
 - PostgreSQL
 - Git
