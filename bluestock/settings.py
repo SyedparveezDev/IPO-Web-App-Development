@@ -3,6 +3,7 @@ Django settings for bluestock project.
 """
 
 from pathlib import Path
+from decouple import config
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -64,11 +65,11 @@ WSGI_APPLICATION = 'bluestock.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ipo_db',
-        'USER': 'postgres',
-        'PASSWORD': 'admin123',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': config('bluestock_db'),
+        'USER': config('postgres'),
+        'PASSWORD': config('admin123'),
+        'HOST': config('localhost'),
+        'PORT': config('5432'),
     }
 }
 
