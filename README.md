@@ -41,6 +41,7 @@ A comprehensive IPO (Initial Public Offering) administration dashboard applicati
 ## 🛠 Tech Stack
 
 ### Backend
+
 - **Python**: 3.12.3
 - **Django**: 5.0.6
 - **Django REST Framework**: 3.15.1
