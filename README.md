@@ -49,6 +49,7 @@ A comprehensive IPO (Initial Public Offering) administration dashboard applicati
 - **Image Processing**: Pillow
 
 ### Frontend
+
 - **HTML5** with semantic markup
 - **CSS3** with custom properties and animations
 - **JavaScript** (ES6+) with async/await
