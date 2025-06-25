@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLUESTOCK - Authentication</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row min-vh-100">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="auth-container">
+                    <!-- Logo -->
+                    <div class="text-center mb-4">
+                        <img src="/static/images/logo.png" alt="BLUESTOCK" class="logo">
+                    </div>
+
+                    <!-- Alert Container -->
+                    <div id="alert-container"></div>
+
+                    <!-- Login Section -->
+                    <div id="login-section" class="auth-section">
+                        <form id="login-form" class="auth-form">
+                            <div class="mb-3">
+                                <label for="login-email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="login-email" placeholder="johndoe@gmail.com" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label for="login-password" class="form-label">Password</label>
+                                    <a href="#" class="forgot-password-link" onclick="showSection('forgot-password')">Forgot Password?</a>
+                                </div>
+                                <div class="password-input-container">
+                                    <input type="password" class="form-control" id="login-password" placeholder="••••••••••••" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('login-password')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- reCAPTCHA -->
+                            <div class="mb-3">
+                                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            </div>
+
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="remember-me">
+                                <label class="form-check-label" for="remember-me">
+                                    Keep me signed in
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 mb-3" id="login-btn">
+                                <span class="btn-text">Login</span>
+                                <span class="btn-spinner d-none">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </span>
+                            </button>
+
+                            <div class="divider">
+                                <span>or sign in with</span>
+                            </div>
+
+                            <button type="button" class="btn btn-google w-100 mb-3">
+                                <i class="fab fa-google me-2"></i>
+                                Continue with Google
+                            </button>
+
+                            <div class="text-center">
+                                <a href="#" class="create-account-link" onclick="showSection('register')">Create an account</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Register Section -->
+                    <div id="register-section" class="auth-section d-none">
+                        <h4 class="text-center mb-4">Create an account</h4>
+                        
+                        <form id="register-form" class="auth-form">
+                            <div class="mb-3">
+                                <label for="register-name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="register-name" placeholder="Shrutika Shinde" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="register-email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="register-email" placeholder="hello@bluestock.in" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="register-password" class="form-label">Password</label>
+                                <div class="password-input-container">
+                                    <input type="password" class="form-control" id="register-password" placeholder="••••••••••••" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('register-password')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="register-password-confirm" class="form-label">Confirm Password</label>
+                                <div class="password-input-container">
+                                    <input type="password" class="form-control" id="register-password-confirm" placeholder="••••••••••••" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('register-password-confirm')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <small class="text-muted">
+                                    By continuing, you agree to our <a href="#" class="terms-link">terms of service</a>.
+                                </small>
+                            </div>
+
+                            <!-- reCAPTCHA -->
+                            <div class="mb-3">
+                                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 mb-3" id="register-btn">
+                                <span class="btn-text">Sign up</span>
+                                <span class="btn-spinner d-none">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </span>
+                            </button>
+
+                            <div class="divider">
+                                <span>or sign up with</span>
+                            </div>
+
+                            <button type="button" class="btn btn-google w-100 mb-3">
+                                <i class="fab fa-google me-2"></i>
+                                Continue with Google
+                            </button>
+
+                            <div class="text-center">
+                                <span class="text-muted">Already have an account? </span>
+                                <a href="#" class="sign-in-link" onclick="showSection('login')">Sign in here</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Forgot Password Section -->
+                    <div id="forgot-password-section" class="auth-section d-none">
+                        <h4 class="text-center mb-3">Forgot Password?</h4>
+                        <p class="text-center text-muted mb-4">
+                            Enter your email address to get the password reset link.
+                        </p>
+                        
+                        <form id="forgot-password-form" class="auth-form">
+                            <div class="mb-4">
+                                <label for="forgot-email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="forgot-email" placeholder="hello@bluestock.in" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 mb-4" id="forgot-password-btn">
+                                <span class="btn-text">Password Reset</span>
+                                <span class="btn-spinner d-none">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </span>
+                            </button>
+
+                            <div class="text-center">
+                                <a href="#" class="back-to-login-link" onclick="showSection('login')">Back to login</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Success Section (Hidden by default) -->
+                    <div id="success-section" class="auth-section d-none">
+                        <div class="text-center">
+                            <div class="success-icon mb-3">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h4 class="mb-3">Welcome to BLUESTOCK!</h4>
+                            <p class="text-muted mb-4">Your account has been created successfully.</p>
+                            <button class="btn btn-primary" onclick="showDashboard()">
+                                Continue to Dashboard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
