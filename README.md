@@ -109,6 +109,7 @@ pip install -r requirements.txt
 \`\`\`
 
 ### 3. Database Configuration
+
 1. Create PostgreSQL database:
 \`\`\`sql
 CREATE DATABASE ipo_admin_db;
