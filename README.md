@@ -166,6 +166,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 - \`GET /api/quick-links/\` - Get quick links for financial platforms
 
 ### Documents & News
+
 - \`GET /api/documents/\` - List IPO documents
 - \`POST /api/documents/\` - Upload IPO document
 - \`GET /api/news/\` - List IPO news
