@@ -302,6 +302,7 @@ ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
 ## 🔧 Development
 
 ### Adding New Features
+
 1. Update models in \`ipo_management/models.py\`
 2. Create and run migrations
 3. Update serializers in \`ipo_management/serializers.py\`
