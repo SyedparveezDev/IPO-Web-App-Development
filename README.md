@@ -187,6 +187,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 - Performance metrics (listing gain/loss, current price)
 
 ### IPO Document Model
+
 - Document management for IPO-related files
 - Support for prospectus, application forms, etc.
 - File upload and categorization
