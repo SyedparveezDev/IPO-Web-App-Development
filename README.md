@@ -213,6 +213,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 - **Responsive Pagination** for large datasets
 
 ### Registration Form
+
 - **Multi-tab Interface** for organized data entry
 - **Real-time Validation** with error messaging
 - **File Upload Support** for company logos
