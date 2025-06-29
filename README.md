@@ -242,6 +242,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 - **Desktop**: > 1024px (Full layout with sidebar)
 
 ### Mobile Features
+
 - Touch-friendly navigation
 - Optimized table scrolling
 - Responsive charts and graphs
