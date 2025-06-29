@@ -311,6 +311,7 @@ ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
 6. Add corresponding CSS styles
 
 ### Code Style Guidelines
+
 - Follow PEP 8 for Python code
 - Use meaningful variable names
 - Add docstrings for functions and classes
