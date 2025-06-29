@@ -352,6 +352,7 @@ ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
 - Optimize query patterns
 
 ### Frontend Optimization
+
 - Lazy loading for images and charts
 - Debounced search inputs
 - Efficient DOM manipulation
