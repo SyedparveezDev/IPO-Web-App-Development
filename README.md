@@ -200,6 +200,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 ## 🎨 UI/UX Features
 
 ### Dashboard Design
+
 - **Modern Sidebar Navigation** with collapsible menu
 - **Interactive Statistics Cards** with animated counters
 - **Doughnut Charts** for visual data representation
