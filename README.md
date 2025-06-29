@@ -282,6 +282,7 @@ GET /api/ipos/?status=upcoming&search=Adani
 ## 🚀 Deployment
 
 ### Production Checklist
+
 1. Set \`DEBUG = False\` in settings
 2. Configure proper database credentials
 3. Set up static file serving (WhiteNoise/Nginx)
