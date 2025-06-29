@@ -180,6 +180,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 - Timestamps for tracking
 
 ### IPO Model
+
 - Complete IPO information (price band, dates, issue size)
 - Status tracking (upcoming, ongoing, new_listed, closed)
 - Financial data (market cap, PE ratio, subscription details)
