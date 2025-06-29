@@ -373,6 +373,7 @@ This project is open source and available under the MIT License.
 ## 📞 Support
 
 For support and questions:
+
 - Create an issue on GitHub
 - Check the documentation
 - Review the troubleshooting section
