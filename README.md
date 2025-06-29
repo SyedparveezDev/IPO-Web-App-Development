@@ -61,7 +61,7 @@ A comprehensive IPO (Initial Public Offering) administration dashboard applicati
 \`\`\`
 ipo-admin-dashboard/
 ├── ipo_admin/                 # Django project settings
-│   ├── __init__.py
+│   ├── *init*.py
 │   ├── settings.py           # Main configuration
 │   ├── urls.py              # URL routing
 │   └── wsgi.py              # WSGI configuration
