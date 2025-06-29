@@ -174,6 +174,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 ## 📊 Data Models
 
 ### Company Model
+
 - Company information (name, logo, sector, website)
 - Company description and metadata
 - Timestamps for tracking
