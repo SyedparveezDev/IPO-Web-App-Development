@@ -240,6 +240,7 @@ Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the application.
 - Permission-based access control
 
 ### Frontend Security
+
 - Input sanitisation and validation
 - XSS protection measures
 - Secure file handling
