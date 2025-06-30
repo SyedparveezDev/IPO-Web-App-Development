@@ -251,6 +251,7 @@ Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the application.
 ## 📱 Responsive Design
 
 ### Breakpoints
+
 - **Mobile**: < 768px (Collapsible sidebar, stacked layout)
 - **Tablet**: 768px - 1024px (Optimized spacing)
 - **Desktop**: > 1024px (Full layout with sidebar)
