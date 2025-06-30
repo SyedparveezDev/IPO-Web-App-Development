@@ -306,6 +306,7 @@ GET /api/ipos/?status=upcoming&search=Adani
 7. Set up logging and monitoring
 
 ### Environment Variables
+
 \`\`\`bash
 SECRET_KEY=your-secret-key
 DATABASE_URL=postgresql://user:pass@localhost/dbname
