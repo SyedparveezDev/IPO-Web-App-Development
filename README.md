@@ -100,7 +100,7 @@ ipo-admin-dashboard/
 git clone <repository-url>
 cd ipo-admin-dashboard
 
-# Create virtual environment
+# Create a virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
@@ -110,7 +110,7 @@ pip install -r requirements.txt
 
 ### 3. Database Configuration
 
-1. Create PostgreSQL database:
+1. Create a PostgreSQL database:
 \`\`\`sql
 CREATE DATABASE ipo_admin_db;
 CREATE USER ipo_admin_user WITH PASSWORD 'secure_password_123';
@@ -122,11 +122,11 @@ GRANT ALL PRIVILEGES ON DATABASE ipo_admin_db TO ipo_admin_user;
 ### 4. Django Setup
 \`\`\`bash
 # Run migrations
-python manage.py makemigrations
-python manage.py migrate
+Python manage.py makemigrations
+Python manage.py migrate
 
 ## Create superuser
-python manage.py createsuperuser
+Python manage.py createsuperuser
 
 ### Load sample data (optional)
 python manage.py shell
@@ -191,7 +191,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 
 - Document management for IPO-related files
 - Support for prospectus, application forms, etc.
-- File upload and categorization
+- File upload and categorisation
 
 ### IPO News Model
 
@@ -228,11 +228,11 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 
 - CSRF protection on all forms
 - SQL injection prevention with ORM
-- File upload validation and sanitization
+- File upload validation and sanitisation
 - Permission-based access control
 
 ### Frontend Security
-- Input sanitization and validation
+- Input sanitisation and validation
 - XSS protection measures
 - Secure file handling
 - API endpoint protection
@@ -247,7 +247,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 ### Mobile Features
 
 - Touch-friendly navigation
-- Optimized table scrolling
+- Optimised table scrolling
 - Responsive charts and graphs
 - Mobile-first form design
 
@@ -342,19 +342,19 @@ ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
    - Ensure Pillow is installed for image processing
 
 4. **Chart Not Displaying**
-   - Check Chart.js CDN link
-   - Verify canvas element exists
+   - Check the Chart.js CDN link
+   - Verify the canvas element exists
    - Check browser console for JavaScript errors
 
 ## 📈 Performance Optimization
 
-### Database Optimization
+### Databthe ase Optimisation
 - Use \`select_related()\` for foreign key queries
-- Implement database indexing for frequently queried fields
+- Implement dthe atabase indexing for frequently queried fields
 - Use pagination for large datasets
-- Optimize query patterns
+- Optimise query patterns
 
-### Frontend Optimization
+### Frontend Optimisation
 
 - Lazy loading for images and charts
 - Debounced search inputs
