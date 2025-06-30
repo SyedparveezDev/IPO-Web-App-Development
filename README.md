@@ -360,6 +360,7 @@ ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
 ## 📈 Performance Optimization
 
 ### Databthe ase Optimisation
+
 - Use \`select_related()\` for foreign key queries
 - Implement dthe atabase indexing for frequently queried fields
 - Use pagination for large datasets
