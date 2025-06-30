@@ -98,6 +98,7 @@ ipo-admin-dashboard/
 - Git
 
 ### 2. Clone and Setup
+
 \`\`\`bash
 git clone <https://github.com/your-username/ipo-admin-dashboard.git>
 cd ipo-admin-dashboard
@@ -122,6 +123,7 @@ GRANT ALL PRIVILEGES ON DATABASE ipo_admin_db TO ipo_admin_user;
 2. Update database settings in \`ipo_admin/settings.py\` if needed.
 
 ### 4. Django Setup
+
 \`\`\`bash
 
 ### Run migrations
@@ -140,6 +142,7 @@ python manage.py shell
 \`\`\`
 
 ### 5. Run Development Server
+
 \`\`\`bash
 python manage.py runserver
 \`\`\`
@@ -268,6 +271,7 @@ Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the application.
 ### Sample API Requests
 
 #### Create IPO
+
 \`\`\`json
 POST /api/ipos/
 {
@@ -285,11 +289,13 @@ POST /api/ipos/
 \`\`\`
 
 #### Get Dashboard Stats
+
 \`\`\`
 GET /api/dashboard-stats/
 \`\`\`
 
 #### Filter IPOs
+
 \`\`\`
 GET /api/ipos/?status=upcoming&search=Adani
 \`\`\`
