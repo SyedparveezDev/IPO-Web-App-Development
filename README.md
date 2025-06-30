@@ -99,7 +99,7 @@ ipo-admin-dashboard/
 
 ### 2. Clone and Setup
 \`\`\`bash
-git clone https://github.com/your-username/ipo-admin-dashboard.git
+git clone <https://github.com/your-username/ipo-admin-dashboard.git>
 cd ipo-admin-dashboard
 
 ## Create a virtual environment
