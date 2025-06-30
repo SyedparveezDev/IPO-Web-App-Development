@@ -126,9 +126,11 @@ Python manage.py makemigrations
 Python manage.py migrate
 
 ## Create superuser
+
 Python manage.py createsuperuser
 
 ### Load sample data (optional)
+
 python manage.py shell
 >>> exec(open('scripts/seed_data.py').read())
 \`\`\`
