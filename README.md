@@ -138,7 +138,7 @@ python manage.py shell
 python manage.py runserver
 \`\`\`
 
-Visit \`http://127.0.0.1:8000\` to access the application.
+Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the application.
 
 ## 🔗 API Endpoints
 
