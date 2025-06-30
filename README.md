@@ -100,7 +100,7 @@ ipo-admin-dashboard/
 git clone <repository-url>
 cd ipo-admin-dashboard
 
-# Create a virtual environment
+## Create a virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
