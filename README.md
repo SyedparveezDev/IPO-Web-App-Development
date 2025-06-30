@@ -121,7 +121,8 @@ GRANT ALL PRIVILEGES ON DATABASE ipo_admin_db TO ipo_admin_user;
 
 ### 4. Django Setup
 \`\`\`bash
-# Run migrations
+### Run migrations
+
 Python manage.py makemigrations
 Python manage.py migrate
 
