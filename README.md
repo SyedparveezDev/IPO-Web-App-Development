@@ -143,6 +143,7 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 ## 🔗 API Endpoints
 
 ### IPO Management
+
 - \`GET /api/ipos/\` - List all IPOs with pagination and filtering
 - \`POST /api/ipos/\` - Create a new IPO
 - \`GET /api/ipos/{id}/\` - Retrieve specific IPO details
@@ -151,17 +152,20 @@ Visit \`http://127.0.0.1:8000\` to access the application.
 - \`PATCH /api/ipos/{id}/update_status/\` - Update IPO status
 
 ### IPO Categories
+
 - \`GET /api/ipos/upcoming/\` - Get upcoming IPOs
 - \`GET /api/ipos/ongoing/\` - Get ongoing IPOs
 - \`GET /api/ipos/new_listed/\` - Get newly listed IPOs
 
 ### Company Management
+
 - \`GET /api/companies/\` - List all companies
 - \`POST /api/companies/\` - Create new company
 - \`GET /api/companies/{id}/\` - Get company details
 - \`PUT /api/companies/{id}/\` - Update company information
 
 ### Dashboard & Analytics
+
 - \`GET /api/dashboard-stats/\` - Get dashboard statistics
 - \`GET /api/quick-links/\` - Get quick links for financial platforms
 
