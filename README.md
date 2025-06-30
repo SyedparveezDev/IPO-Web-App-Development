@@ -122,12 +122,12 @@ GRANT ALL PRIVILEGES ON DATABASE ipo_admin_db TO ipo_admin_user;
 \`\`\`bash
 ### Run migrations
 
-Python manage.py makemigrations
-Python manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 
 ## Create superuser
 
-Python manage.py createsuperuser
+python manage.py createsuperuser
 
 ### Load sample data (optional)
 
