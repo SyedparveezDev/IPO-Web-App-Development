@@ -115,7 +115,7 @@ export default function LiveNewsPage() {
     },
     {
       id: "5",
-      title: "Cryptocurrency Market Rebounds as Bitcoin Crosses $45,000",
+      title: "Cryptocurrency Market Rebounds as Bitcoin Crosses $45,00",
       description:
         "The cryptocurrency market showed signs of recovery with Bitcoin surpassing the $45,000 mark, bringing optimism to digital asset investors.",
       content: "Bitcoin, the world's largest cryptocurrency by market cap...",
