@@ -130,7 +130,7 @@ export default function LiveNewsPage() {
     },
     {
       id: "6",
-      title: "New IPO Pipeline: 5 Companies File DRHP with SEBI This Week",
+      title: "New IPO Pipeline: 5 Companies File DRHP with SEBI This Week $26,000",
       description:
         "Five companies across different sectors have filed their Draft Red Herring Prospectus with SEBI, indicating a robust IPO pipeline for the coming months.",
       content: "The Indian IPO market continues to show strong momentum...",
