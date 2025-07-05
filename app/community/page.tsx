@@ -61,7 +61,7 @@ const expertInteractions = [
     avatar: "GK",
     question:
       "Options trading is the trading of instruments that give you the right to buy or sell a specific security on a specific date at a specific price.",
-    time: "5 mins ago",
+    time: "5 mins ago add on ",
     replies: "445 replies",
     isAnswer: true,
   },
