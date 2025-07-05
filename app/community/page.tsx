@@ -70,7 +70,7 @@ const expertInteractions = [
 const communityFeatures = [
   {
     icon: MessageCircle,
-    title: "Rich environment for knowledge exchange reveate the ch",
+    title: "Rich environment for knowledge exchange reveate the changes",
     description: "Connect with experienced traders and investors",
   },
   {
